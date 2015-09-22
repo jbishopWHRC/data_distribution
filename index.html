@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
+        <link rel="stylesheet" href="./src/leaflet.zoomhome.css"/>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
+        <script src="https://rawgithub.com/calvinmetcalf/leaflet-ajax/master/dist/leaflet.ajax.min.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="./src/leaflet.zoomhome.min.js"></script>
+        <style> 
+            #map { height: 600px; }
+        </style>
+    </head>
+    <body>
+        <div id="map"></div>
+        <br>
+        <div id="data">
+            <span></span>
+        </div>
+        <script>
+            var datapath = 'https://googledrive.com/host/0B0kU4muLAA1Bd09tT21QcXRIdGM/';
+            function popUpChiapas(feature, layer) {    
+                layer.bindPopup("<h2>" + feature.properties.Sheet + "</h2>DSM: <a href=" + datapath + "Chiapas/DSM/DSM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target=_blank' href=" + datapath + "Chiapas/Metadata/DSM.htm>metadata</a><br>DTM: <a href=" + datapath + "Chiapas/DTM/DTM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Chiapas/Metadata/DTM.htm>metadata</a><br>HsDSM: <a href=" + datapath + "Chiapas/HsDSM/HsDSM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Chiapas/Metadata/HsDSM.htm>metadata</a><br>HsDTM: <a href=" + datapath + "Chiapas/HsDTM/HsDTM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Chiapas/Metadata/HsDTM.htm>metadata</a><br>LAS File: <a href=" + datapath + "Chiapas/LAS/" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Chiapas/Metadata/LiDAR.htm>metadata</a>");
+            }
+            function popUpCampeche_Yucatan(feature, layer) {    
+                layer.bindPopup("<h2>" + feature.properties.Sheet + "</h2>DSM: <a href=" + datapath + "Campeche_Yucatan/DSM/DSM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target=_blank' href=" + datapath + "Campeche_Yucatan/Metadata/DSM.htm>metadata</a><br>DTM: <a href=" + datapath + "Campeche_Yucatan/DTM/DTM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Campeche_Yucatan/Metadata/DTM.htm>metadata</a><br>HsDSM: <a href=" + datapath + "Campeche_Yucatan/HsDSM/HsDSM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Campeche_Yucatan/Metadata/HsDSM.htm>metadata</a><br>HsDTM: <a href=" + datapath + "Campeche_Yucatan/HsDTM/HsDTM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Campeche_Yucatan/Metadata/HsDTM.htm>metadata</a><br>LAS File: <a href=" + datapath + "Campeche_Yucatan/LAS/" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Campeche_Yucatan/Metadata/LiDAR.htm>metadata</a>");
+            }
+            function popUpChihuahua(feature, layer) {    
+                layer.bindPopup("<h2>" + feature.properties.Sheet + "</h2>DSM: <a href=" + datapath + "Chihuahua/DSM/DSM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target=_blank' href=" + datapath + "Chihuahua/Metadata/DSM.htm>metadata</a><br>DTM: <a href=" + datapath + "Chihuahua/DTM/DTM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Chihuahua/Metadata/DTM.htm>metadata</a><br>HsDSM: <a href=" + datapath + "Chihuahua/HsDSM/HsDSM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Chihuahua/Metadata/HsDSM.htm>metadata</a><br>HsDTM: <a href=" + datapath + "Chihuahua/HsDTM/HsDTM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Chihuahua/Metadata/HsDTM.htm>metadata</a><br>LAS File: <a href=" + datapath + "Chihuahua/LAS/" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Chihuahua/Metadata/LiDAR.htm>metadata</a>");
+            }
+            function popUpJalisco(feature, layer) {    
+                layer.bindPopup("<h2>" + feature.properties.Sheet + "</h2>DSM: <a href=" + datapath + "Jalisco/DSM/DSM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target=_blank' href=" + datapath + "Jalisco/Metadata/DSM.htm>metadata</a><br>DTM: <a href=" + datapath + "Jalisco/DTM/DTM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Jalisco/Metadata/DTM.htm>metadata</a><br>HsDSM: <a href=" + datapath + "Jalisco/HsDSM/HsDSM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Jalisco/Metadata/HsDSM.htm>metadata</a><br>HsDTM: <a href=" + datapath + "Jalisco/HsDTM/HsDTM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Jalisco/Metadata/HsDTM.htm>metadata</a><br>LAS File: <a href=" + datapath + "Jalisco/LAS/" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Jalisco/Metadata/LiDAR.htm>metadata</a>");
+            }
+            function popUpOaxaca1(feature, layer) {    
+                layer.bindPopup("<h2>" + feature.properties.Sheet + "</h2>DSM: <a href=" + datapath + "Oaxaca1/DSM/DSM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target=_blank' href=" + datapath + "Oaxaca1/Metadata/DSM.htm>metadata</a><br>DTM: <a href=" + datapath + "Oaxaca1/DTM/DTM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Oaxaca1/Metadata/DTM.htm>metadata</a><br>HsDSM: <a href=" + datapath + "Oaxaca1/HsDSM/HsDSM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Oaxaca1/Metadata/HsDSM.htm>metadata</a><br>HsDTM: <a href=" + datapath + "Oaxaca1/HsDTM/HsDTM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Oaxaca1/Metadata/HsDTM.htm>metadata</a><br>LAS File: <a href=" + datapath + "Oaxaca1/LAS/" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Oaxaca1/Metadata/LiDAR.htm>metadata</a>");
+            }
+            function popUpOaxaca2(feature, layer) {    
+                layer.bindPopup("<h2>" + feature.properties.Sheet + "</h2>DSM: <a href=" + datapath + "Oaxaca2/DSM/DSM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target=_blank' href=" + datapath + "Oaxaca2/Metadata/DSM.htm>metadata</a><br>DTM: <a href=" + datapath + "Oaxaca2/DTM/DTM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Oaxaca2/Metadata/DTM.htm>metadata</a><br>HsDSM: <a href=" + datapath + "Oaxaca2/HsDSM/HsDSM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Oaxaca2/Metadata/HsDSM.htm>metadata</a><br>HsDTM: <a href=" + datapath + "Oaxaca2/HsDTM/HsDTM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Oaxaca2/Metadata/HsDTM.htm>metadata</a><br>LAS File: <a href=" + datapath + "Oaxaca2/LAS/" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Oaxaca2/Metadata/LiDAR.htm>metadata</a>");
+            }
+            function popUpOaxaca3(feature, layer) {    
+                layer.bindPopup("<h2>" + feature.properties.Sheet + "</h2>DSM: <a href=" + datapath + "Oaxaca3/DSM/DSM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target=_blank' href=" + datapath + "Oaxaca3/Metadata/DSM.htm>metadata</a><br>DTM: <a href=" + datapath + "Oaxaca3/DTM/DTM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Oaxaca3/Metadata/DTM.htm>metadata</a><br>HsDSM: <a href=" + datapath + "Oaxaca3/HsDSM/HsDSM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Oaxaca3/Metadata/HsDSM.htm>metadata</a><br>HsDTM: <a href=" + datapath + "Oaxaca3/HsDTM/HsDTM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Oaxaca3/Metadata/HsDTM.htm>metadata</a><br>LAS File: <a href=" + datapath + "Oaxaca3/LAS/" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Oaxaca3/Metadata/LiDAR.htm>metadata</a>");
+            }
+
+            var osm =  L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            });
+
+            var biotiles = L.tileLayer('https://googledrive.com/host/0B40nFLHiyF8mekZhSjBkb2dkZE0/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="http://www.whrc.org">WHRC</a>',
+                tms: true
+            });
+
+            var yucatan_q1_tiles = new L.GeoJSON.AJAX("https://googledrive.com/host/0B0kU4muLAA1BbWVvd2s3RnRZbGc/yucatan_q1_tiles.json", {
+                onEachFeature: popUpCampeche_Yucatan,
+                weight: 0.5,
+                opacity: 0.8
+            });
+            
+            var campeche_q2_tiles = new L.GeoJSON.AJAX("https://googledrive.com/host/0B0kU4muLAA1BbWVvd2s3RnRZbGc/campeche_q2_tiles.json", {
+                onEachFeature: popUpCampeche_Yucatan,
+                weight: 1
+            });
+            
+            var campeche_q3_tiles = new L.GeoJSON.AJAX("https://googledrive.com/host/0B0kU4muLAA1BbWVvd2s3RnRZbGc/campeche_q3_tiles.json", {
+                onEachFeature: popUpCampeche_Yucatan,
+                weight: 1
+            });
+            
+            var campeche_t1_tiles = new L.GeoJSON.AJAX("https://googledrive.com/host/0B0kU4muLAA1BbWVvd2s3RnRZbGc/campeche_t1_tiles.json", {
+                onEachFeature: popUpCampeche_Yucatan,
+                weight: 1
+            });
+            
+            var campeche_t2_tiles = new L.GeoJSON.AJAX("https://googledrive.com/host/0B0kU4muLAA1BbWVvd2s3RnRZbGc/campeche_t2_tiles.json", {
+                onEachFeature: popUpCampeche_Yucatan,
+                weight: 1
+            });
+            
+            var campeche_t3_tiles = new L.GeoJSON.AJAX("https://googledrive.com/host/0B0kU4muLAA1BbWVvd2s3RnRZbGc/campeche_t3_tiles.json", {
+                onEachFeature: popUpCampeche_Yucatan,
+                weight: 1
+            });
+            
+            var campeche_yucatan_q4_tiles = new L.GeoJSON.AJAX("https://googledrive.com/host/0B0kU4muLAA1BbWVvd2s3RnRZbGc/campeche-yucatan_q4_tiles.json", {
+                onEachFeature: popUpCampeche_Yucatan,
+                weight: 1
+            });
+            
+            var chiapas_q1yq2_tiles = new L.GeoJSON.AJAX("https://googledrive.com/host/0B0kU4muLAA1BbWVvd2s3RnRZbGc/chiapas_q1yq2_tiles.json", {
+                onEachFeature: popUpChiapas,
+                weight: 1
+            });
+            
+            var chiapas_q3_tiles = new L.GeoJSON.AJAX("https://googledrive.com/host/0B0kU4muLAA1BbWVvd2s3RnRZbGc/chiapas_q3_tiles.json", {
+                onEachFeature: popUpChiapas,
+                weight: 1
+            });
+            
+            var chiapas_q4_tiles = new L.GeoJSON.AJAX("https://googledrive.com/host/0B0kU4muLAA1BbWVvd2s3RnRZbGc/chiapas_q4_tiles.json", {
+                onEachFeature: popUpChiapas,
+                weight: 1
+            });
+            
+            var chiapas_t1_tiles = new L.GeoJSON.AJAX("https://googledrive.com/host/0B0kU4muLAA1BbWVvd2s3RnRZbGc/chiapas_t1_tiles.json", {
+                onEachFeature: popUpChiapas,
+                weight: 1
+            });
+            
+            var chiapas_t2_tiles = new L.GeoJSON.AJAX("https://googledrive.com/host/0B0kU4muLAA1BbWVvd2s3RnRZbGc/chiapas_t2_tiles.json", {
+                onEachFeature: popUpChiapas,
+                weight: 1
+            });
+            
+            var chiapas_t3_tiles = new L.GeoJSON.AJAX("https://googledrive.com/host/0B0kU4muLAA1BbWVvd2s3RnRZbGc/chiapas_t3_tiles.json", {
+                onEachFeature: popUpChiapas,
+                weight: 1
+            });
+            
+            var chiapas_t4_tiles = new L.GeoJSON.AJAX("https://googledrive.com/host/0B0kU4muLAA1BbWVvd2s3RnRZbGc/chiapas_t4_tiles.json", {
+                onEachFeature: popUpChiapas,
+                weight: 1
+            });
+            
+            var chihuahua_q1_tiles = new L.GeoJSON.AJAX("https://googledrive.com/host/0B0kU4muLAA1BbWVvd2s3RnRZbGc/chihuahua_q1_tiles.json", {
+                onEachFeature: popUpChihuahua,
+                weight: 1
+            });
+            
+            var chihuahua_t1_tiles = new L.GeoJSON.AJAX("https://googledrive.com/host/0B0kU4muLAA1BbWVvd2s3RnRZbGc/chihuahua_t1_tiles.json", {
+                onEachFeature: popUpChihuahua,
+                weight: 1
+            });
+            
+            var chihuahua_t2_tiles = new L.GeoJSON.AJAX("https://googledrive.com/host/0B0kU4muLAA1BbWVvd2s3RnRZbGc/chihuahua_t2_tiles.json", {
+                onEachFeature: popUpChihuahua,
+                weight: 1
+            });
+            
+            var chihuahua_t3_tiles = new L.GeoJSON.AJAX("https://googledrive.com/host/0B0kU4muLAA1BbWVvd2s3RnRZbGc/chihuahua_t3_tiles.json", {
+                onEachFeature: popUpChihuahua,
+                weight: 1
+            });
+            
+            var jalisco_tiles = new L.GeoJSON.AJAX("https://googledrive.com/host/0B0kU4muLAA1BbWVvd2s3RnRZbGc/jalisco_tiles.json", {
+                className: "Jalisco",
+                onEachFeature: popUpJalisco,
+                weight: 2
+            });
+            
+            var oaxaca1_tiles = new L.GeoJSON.AJAX("https://googledrive.com/host/0B0kU4muLAA1BbWVvd2s3RnRZbGc/oaxaca1_tiles.json", {
+                onEachFeature: popUpOaxaca1,
+                weight: 2
+            });
+            
+            var oaxaca2_tiles = new L.GeoJSON.AJAX("https://googledrive.com/host/0B0kU4muLAA1BbWVvd2s3RnRZbGc/oaxaca2_tiles.json", {
+                onEachFeature: popUpOaxaca2,
+                weight: 2
+            });
+            
+            var oaxaca3_tiles = new L.GeoJSON.AJAX("https://googledrive.com/host/0B0kU4muLAA1BbWVvd2s3RnRZbGc/oaxaca3_tiles.json", {
+                onEachFeature: popUpOaxaca3,
+                weight: 2
+            });
+
+            var mexmun = new L.GeoJSON.AJAX("https://googledrive.com/host/0B40nFLHiyF8mYk02Qko4ZERSaDQ/mexmun.json", {
+                color: '#f00'
+            });
+
+            var map = L.map("map", {
+                // zoomControl: false,
+                center: [23.9505338215299, -102.547071590564],
+                zoom: 5,
+                layers: [osm]
+            });
+
+            // var zoomHome = L.Control.zoomHome({
+            //     position: 'topright'
+            // });
+            // zoomHome.addTo(map);
+
+            var baseMaps = {
+                "OSM": osm,
+                "Biomass": biotiles
+            }
+
+            var oaxaca_group = L.featureGroup([oaxaca1_tiles, oaxaca2_tiles, oaxaca3_tiles])
+
+            var yucatan_campeche_group = L.featureGroup([yucatan_q1_tiles, campeche_q2_tiles, campeche_q3_tiles, campeche_t1_tiles, campeche_t2_tiles, campeche_t3_tiles, campeche_yucatan_q4_tiles])
+
+            var chiapas_group = L.featureGroup([chiapas_q1yq2_tiles, chiapas_q3_tiles, chiapas_q4_tiles, chiapas_t1_tiles, chiapas_t2_tiles, chiapas_t3_tiles, chiapas_t4_tiles])
+
+            var chihuahua_group = L.featureGroup([chihuahua_q1_tiles, chihuahua_t1_tiles, chihuahua_t2_tiles, chihuahua_t3_tiles])
+
+            var overlayLayers = {
+                "Campeche-Yucatan": yucatan_campeche_group,
+                "Chiapas": chiapas_group,
+                "Chihuahua": chihuahua_group,
+                "Jalisco": jalisco_tiles,
+                "Oaxaca": oaxaca_group
+            }
+            L.control.layers(baseMaps, overlayLayers, {
+                collapsed: false,
+                position: 'topright'
+            }).addTo(map)
+
+            map.on('overlayadd', function (eventLayer) {
+                console.log(eventLayer)
+                $("#data span").text(eventLayer.name)
+                map.fitBounds(eventLayer.layer)
+            });
+
+            map.on('overlayremove', function (e) {
+                $("#data span").text('')
+            });
+
+
+        </script>
+
+    </body>
+</html>
+
