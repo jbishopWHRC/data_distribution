@@ -9,7 +9,16 @@
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         <script src="./src/leaflet.zoomhome.min.js"></script>
         <style> 
-            #map { height: 600px; }
+            html,body { height: 100%;
+            }
+            #map { height: 60%; 
+                overflow: hidden;
+                left: 0%;
+                top: 0%;
+            }
+            #data { height: 40%;
+                overflow: auto;
+            }
         </style>
     </head>
     <body>
@@ -206,7 +215,8 @@
 
             map.on('overlayadd', function (eventLayer) {
                 console.log(eventLayer)
-                $("#data span").text(eventLayer.name)
+                console.log(eventLayer.name)
+                $("#data span").html("<h2>" + eventLayer.name + "</h2><br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test")
                 map.fitBounds(eventLayer.layer)
             });
 
