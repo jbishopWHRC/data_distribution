@@ -39,6 +39,87 @@
             #logo {
                 margin: 0px 20px;
             }
+            .ir {
+              background-color: transparent;
+              border: 0;
+              overflow: hidden;
+              *text-indent: -9999px;
+            }
+            .ir:before {
+              content: "";
+              display: block;
+              width: 0;
+              height: 150%;
+            }
+            .alliances-list {
+              padding: 0;
+              list-style-type: none;
+              margin: 0;
+              padding: 10px 0;
+              background-color: #FFFFFF;
+            }
+            .alliance-item-1 {
+              width: 195px;
+              margin-left: 20px;
+            }
+            .alliance-item-2 {
+              width: 207px;
+            }
+            .alliance-item-3 {
+              width: 165px;
+            }
+            .alliance-item-4 {
+              width: 340px;
+            }
+            .alliance-item-5 {
+              width: 312px;
+            }
+            .alliance-item-6 {
+              width: 145px;
+            }
+            .alliance-icon {
+              display: block;
+              vertical-align: middle;
+            }
+            .alliance-icon.usaid {
+              background: url(https://googledrive.com/host/0B0kU4muLAA1Bdy1LbDJFallVQ1k/USAID_logo.png) no-repeat;
+              width: 161px;
+              height: 62px;
+            }
+            .alliance-icon.nature-conservancy {
+              background: url(https://googledrive.com/host/0B0kU4muLAA1Bdy1LbDJFallVQ1k/logo-nature-notagline.png) no-repeat;
+              width: 172px;
+              height: 62px;
+            }
+            .alliance-icon.rainforest {
+              background: url(https://googledrive.com/host/0B0kU4muLAA1Bdy1LbDJFallVQ1k/RFA.jpg) no-repeat;
+              width: 130px;
+              height: 62px;
+            }
+            .alliance-icon.woods-hole {
+              background: url(https://googledrive.com/host/0B0kU4muLAA1Bdy1LbDJFallVQ1k/WHRC-logo_325.png) no-repeat;
+              width: 305px;
+              height: 62px;
+            }
+            .alliance-icon.espacios {
+              background: url(https://googledrive.com/host/0B0kU4muLAA1Bdy1LbDJFallVQ1k/endesu.jpg) no-repeat;
+              width: 277px;
+              height: 62px;
+            }
+            .clearfix:before,
+            .clearfix:after {
+              content: " ";
+              display: table;
+            }
+            .clearfix:after {
+              clear: both;
+            }
+            .clearfix {
+              *zoom: 1;
+            }
+            .left {
+              float: left;
+            }
         </style>
     </head>
     <body>
@@ -47,11 +128,28 @@
         </header>
         <div id="map"></div>
         <br>
-                    <img id="logo" src="https://googledrive.com/host/0B0kU4muLAA1Bdy1LbDJFallVQ1k/USAID_logo.png" alt="USAID" height=15% width=15%>
-                    <img id="logo" src="https://googledrive.com/host/0B0kU4muLAA1Bdy1LbDJFallVQ1k/logo-nature-notagline.png" alt="TNC" height=15% width=15%>
-                    <img id="logo" src="https://googledrive.com/host/0B0kU4muLAA1Bdy1LbDJFallVQ1k/RFA.jpg" alt="RFA" height=15% width=15%>
-                    <img id="logo" src="https://googledrive.com/host/0B0kU4muLAA1Bdy1LbDJFallVQ1k/WHRC-logo_325.png" alt="WHRC" height=15% width=15%>
-                    <img id="logo" src="https://googledrive.com/host/0B0kU4muLAA1Bdy1LbDJFallVQ1k/endesu.jpg" alt="ENDESU" height=15% width=15%>
+<!--                     <img id="logo" src="https://googledrive.com/host/0B0kU4muLAA1Bdy1LbDJFallVQ1k/USAID_logo.png" alt="USAID" height=10% width=10%>
+                    <img id="logo" src="https://googledrive.com/host/0B0kU4muLAA1Bdy1LbDJFallVQ1k/logo-nature-notagline.png" alt="TNC" height=10% width=10%>
+                    <img id="logo" src="https://googledrive.com/host/0B0kU4muLAA1Bdy1LbDJFallVQ1k/RFA.jpg" alt="RFA" height=10% width=10%>
+                    <img id="logo" src="https://googledrive.com/host/0B0kU4muLAA1Bdy1LbDJFallVQ1k/WHRC-logo_325.png" alt="WHRC" height=10% width=10%>
+                    <img id="logo" src="https://googledrive.com/host/0B0kU4muLAA1Bdy1LbDJFallVQ1k/endesu.jpg" alt="ENDESU" height=10% width=10%> -->
+        <ul class="clearfix alliances-list">
+            <li class="left alliance-item-1">
+                <a target="_blank" class="ir alliance-icon usaid" href="http://transition.usaid.gov/mx/">USAID</a>
+            </li>
+            <li class="left alliance-item-2">
+                <a target="_blank" class="ir alliance-icon nature-conservancy" href="http://espanol.tnc.org/">The Nature Conservancy</a>
+            </li>
+            <li class="left alliance-item-3">
+                <a target="_blank" class="ir alliance-icon rainforest" href="http://www.rainforest-alliance.org/">Rainforest Alliance</a>
+            </li>
+            <li class="left alliance-item-4">
+                <a target="_blank" class="ir alliance-icon woods-hole" href="http://www.whrc.org/">The Woods Hole Research Center</a>
+            </li>
+            <li class="left alliance-item-5">
+                <a target="_blank" class="ir alliance-icon espacios" href="http://www.endesu.org.mx/">Espacios Naturales</a>
+            </li>
+        </ul>
         <div id="data">
             <span></span>
         </div>
