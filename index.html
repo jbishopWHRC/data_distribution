@@ -88,6 +88,7 @@
             }
 
             var osm =  L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                opacity: 0.5,
                 attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             });
 
@@ -275,13 +276,14 @@
                     } else if (eventLayer.name == "Jalisco") {
                         myarray = jalisco_array.sort()
                     }
-                    var newtable = "<h2>" + eventLayer.name + "</h2><table>"
-                    for (i=0; i<=myarray.length - 1; i++) {
-                        newtable = newtable + "<tr><td><b>" + myarray[i][0] + "</b></td><td>" + myarray[i][1] + "</td><td>" + myarray[i][2] + "</td><td>" + myarray[i][3] + "</td><td>" + myarray[i][4] + "</td><td>" + myarray[i][5] + "</td></tr>"
-                    }
-                    newtable = newtable + "</table>"
-                    return newtable
-                    // return "<h2>" + eventLayer.name + "</h2>" + text;
+                    if (eventLayer.name != "Biomass") {
+                        var newtable = "<h2>" + eventLayer.name + "</h2><table>"
+                        for (i=0; i<=myarray.length - 1; i++) {
+                            newtable = newtable + "<tr><td><b>" + myarray[i][0] + "</b></td><td>" + myarray[i][1] + "</td><td>" + myarray[i][2] + "</td><td>" + myarray[i][3] + "</td><td>" + myarray[i][4] + "</td><td>" + myarray[i][5] + "</td></tr>"
+                        }
+                        newtable = newtable + "</table>"
+                        return newtable
+                    } 
                 });
                 map.fitBounds(eventLayer.layer)
             });
