@@ -88,11 +88,11 @@
             }
 
             var osm =  L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-                opacity: 0.5,
                 attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             });
 
             var biotiles = L.tileLayer('https://googledrive.com/host/0B0kU4muLAA1BbHM3UU9KRVE2N28/{z}/{x}/{y}.png', {
+                opacity: 0.75,
                 attribution: '&copy; <a href="http://www.whrc.org">WHRC</a>',
                 tms: true
             });
@@ -100,7 +100,6 @@
             var yucatan_q1_tiles = new L.GeoJSON.AJAX("https://googledrive.com/host/0B0kU4muLAA1BbWVvd2s3RnRZbGc/yucatan_q1_tiles.json", {
                 onEachFeature: popUpCampeche_Yucatan,
                 weight: 0.5,
-                opacity: 0.8
             });
             
             var campeche_q2_tiles = new L.GeoJSON.AJAX("https://googledrive.com/host/0B0kU4muLAA1BbWVvd2s3RnRZbGc/campeche_q2_tiles.json", {
@@ -249,12 +248,12 @@
 
 
             var overlayLayers = {
-                "Campeche-Yucatan": yucatan_campeche_group,
-                "Chiapas": chiapas_group,
-                "Chihuahua": chihuahua_group,
-                "Jalisco": jalisco_group,
-                "Oaxaca": oaxaca_group,
-                "Biomass": biotiles
+                "Campeche-Yucatan LiDAR": yucatan_campeche_group,
+                "Chiapas LiDAR": chiapas_group,
+                "Chihuahua LiDAR": chihuahua_group,
+                "Jalisco LiDAR": jalisco_group,
+                "Oaxaca LiDAR": oaxaca_group,
+                "Biomass Map": biotiles
             }
             L.control.layers(baseMaps, overlayLayers, {
                 collapsed: false,
@@ -265,18 +264,18 @@
                 console.log(eventLayer)
                 console.log(eventLayer.name)
                 $("#data span").html(function() {
-                    if (eventLayer.name == "Oaxaca") {
+                    if (eventLayer.name == "Oaxaca LiDAR") {
                         myarray = oaxaca_array.sort()
-                    } else if (eventLayer.name == "Campeche-Yucatan") {
+                    } else if (eventLayer.name == "Campeche-Yucatan LiDAR") {
                         myarray = campeche_array.sort()
-                    } else if (eventLayer.name == "Chiapas") {
+                    } else if (eventLayer.name == "Chiapas LiDAR") {
                         myarray = chiapas_array.sort()
-                    } else if (eventLayer.name == "Chihuahua") {
+                    } else if (eventLayer.name == "Chihuahua LiDAR") {
                         myarray = chihuahua_array.sort()
-                    } else if (eventLayer.name == "Jalisco") {
+                    } else if (eventLayer.name == "Jalisco LiDAR") {
                         myarray = jalisco_array.sort()
                     }
-                    if (eventLayer.name != "Biomass") {
+                    if (eventLayer.name != "Biomass Map") {
                         var newtable = "<h2>" + eventLayer.name + "</h2><table>"
                         for (i=0; i<=myarray.length - 1; i++) {
                             newtable = newtable + "<tr><td><b>" + myarray[i][0] + "</b></td><td>" + myarray[i][1] + "</td><td>" + myarray[i][2] + "</td><td>" + myarray[i][3] + "</td><td>" + myarray[i][4] + "</td><td>" + myarray[i][5] + "</td></tr>"
@@ -289,7 +288,11 @@
             });
 
             map.on('overlayremove', function (e) {
-                $("#data span").text('')
+                $("#data span").html(function() {
+                    if (eventLayer.name != "Biomass Map") {
+                        return ""
+                    }
+                });
             });
 
 
