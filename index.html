@@ -3,16 +3,31 @@
     <head>
         <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
+        <link rel="stylesheet" href="https://googledrive.com/host/0B0kU4muLAA1BZ0FEM1BoZElaWVk/leaflet.defaultextent.css"/>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
         <script src="https://rawgithub.com/calvinmetcalf/leaflet-ajax/master/dist/leaflet.ajax.min.js"></script>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="https://googledrive.com/host/0B0kU4muLAA1BZ0FEM1BoZElaWVk/leaflet.defaultextent.js"></script>
         <style> 
+            @font-face {
+                font-family: 'GandhiSans-Regular';
+                src: url('http://www.fontsaddict.com/fontface/gandhisans-regular.otf');
+            }
+            header,h1 {
+                padding: 0px;
+                margin: 0px;
+                border: 0;
+            }
             html,body { height: 100%;
+                font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+                color: #5B7439;
             }
             #map { height: 60%; 
                 overflow: hidden;
                 left: 0%;
                 top: 0%;
+                padding: 0px;
+                margin: 0px;
             }
             #data { height: 40%;
                 overflow: auto;
@@ -20,7 +35,9 @@
         </style>
     </head>
     <body>
-        <h1>MREDD Data Sharing Platform</h1>
+        <header>
+            <h1><img src="https://googledrive.com/host/0B0kU4muLAA1Bdy1LbDJFallVQ1k/alianza_mredd.png" alt="Alianza MREDD Logo" align="middle">Spatial Data Sharing Platform</h1>
+        </header>
         <div id="map"></div>
         <br>
         <div id="data">
@@ -31,42 +48,42 @@
             var chiapas_array = []
             function popUpChiapas(feature, layer) {    
                 layer.bindPopup("<h2>" + feature.properties.Sheet + "</h2>DSM: <a href=" + datapath + "Chiapas/DSM/DSM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target=_blank' href=" + datapath + "Chiapas/Metadata/DSM.htm>metadata</a><br>DTM: <a href=" + datapath + "Chiapas/DTM/DTM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Chiapas/Metadata/DTM.htm>metadata</a><br>HsDSM: <a href=" + datapath + "Chiapas/HsDSM/HsDSM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Chiapas/Metadata/HsDSM.htm>metadata</a><br>HsDTM: <a href=" + datapath + "Chiapas/HsDTM/HsDTM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Chiapas/Metadata/HsDTM.htm>metadata</a><br>LAS File: <a href=" + datapath + "Chiapas/LAS/" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Chiapas/Metadata/LiDAR.htm>metadata</a>");
-                var arraycont = [feature.properties.Sheet, "<a href=" + datapath + "Chiapas/DSM/DSM_" + feature.properties.Sheet.replace('&','') + ".zip>DSM</a>", "<a href=" + datapath + "Chiapas/DTM/DTM_" + feature.properties.Sheet.replace('&','') + ".zip>DTM</a>", "<a href=" + datapath + "Chiapas/HsDSM/HsDSM_" + feature.properties.Sheet.replace('&','') + ".zip>HsDSM</a>", "<a href=" + datapath + "Chiapas/HsDTM/HsDTM_" + feature.properties.Sheet.replace('&','') + ".zip>HsDTM</a>", "<a href=" + datapath + "Chiapas/LAS/" + feature.properties.Sheet.replace('&','') + ".zip>LAS</a>", "<a href=" + datapath + "Chiapas/Ground_points/" + feature.properties.Sheet.replace('&','') + ".zip>Ground Points</a>"]
+                var arraycont = [feature.properties.Sheet, "<a href=" + datapath + "Chiapas/DSM/DSM_" + feature.properties.Sheet.replace('&','') + ".zip>DSM</a>", "<a href=" + datapath + "Chiapas/DTM/DTM_" + feature.properties.Sheet.replace('&','') + ".zip>DTM</a>", "<a href=" + datapath + "Chiapas/HsDSM/HsDSM_" + feature.properties.Sheet.replace('&','') + ".zip>HsDSM</a>", "<a href=" + datapath + "Chiapas/HsDTM/HsDTM_" + feature.properties.Sheet.replace('&','') + ".zip>HsDTM</a>", "<a href=" + datapath + "Chiapas/LAS/" + feature.properties.Sheet.replace('&','') + ".zip>LAS</a>"]
                 chiapas_array.push(arraycont);
             }
             var campeche_array = []
             function popUpCampeche_Yucatan(feature, layer) {    
                 layer.bindPopup("<h2>" + feature.properties.Sheet + "</h2>DSM: <a href=" + datapath + "Campeche_Yucatan/DSM/DSM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target=_blank' href=" + datapath + "Campeche_Yucatan/Metadata/DSM.htm>metadata</a><br>DTM: <a href=" + datapath + "Campeche_Yucatan/DTM/DTM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Campeche_Yucatan/Metadata/DTM.htm>metadata</a><br>HsDSM: <a href=" + datapath + "Campeche_Yucatan/HsDSM/HsDSM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Campeche_Yucatan/Metadata/HsDSM.htm>metadata</a><br>HsDTM: <a href=" + datapath + "Campeche_Yucatan/HsDTM/HsDTM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Campeche_Yucatan/Metadata/HsDTM.htm>metadata</a><br>LAS File: <a href=" + datapath + "Campeche_Yucatan/LAS/" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Campeche_Yucatan/Metadata/LiDAR.htm>metadata</a>");
-                var arraycont = [feature.properties.Sheet, "<a href=" + datapath + "Campeche_Yucatan/DSM/DSM_" + feature.properties.Sheet.replace('&','') + ".zip>DSM</a>", "<a href=" + datapath + "Campeche_Yucatan/DTM/DTM_" + feature.properties.Sheet.replace('&','') + ".zip>DTM</a>", "<a href=" + datapath + "Campeche_Yucatan/HsDSM/HsDSM_" + feature.properties.Sheet.replace('&','') + ".zip>HsDSM</a>", "<a href=" + datapath + "Campeche_Yucatan/HsDTM/HsDTM_" + feature.properties.Sheet.replace('&','') + ".zip>HsDTM</a>", "<a href=" + datapath + "Campeche_Yucatan/LAS/" + feature.properties.Sheet.replace('&','') + ".zip>LAS</a>", "<a href=" + datapath + "Campeche_Yucatan/Ground_points/" + feature.properties.Sheet.replace('&','') + ".zip>Ground Points</a>"]
+                var arraycont = [feature.properties.Sheet, "<a href=" + datapath + "Campeche_Yucatan/DSM/DSM_" + feature.properties.Sheet.replace('&','') + ".zip>DSM</a>", "<a href=" + datapath + "Campeche_Yucatan/DTM/DTM_" + feature.properties.Sheet.replace('&','') + ".zip>DTM</a>", "<a href=" + datapath + "Campeche_Yucatan/HsDSM/HsDSM_" + feature.properties.Sheet.replace('&','') + ".zip>HsDSM</a>", "<a href=" + datapath + "Campeche_Yucatan/HsDTM/HsDTM_" + feature.properties.Sheet.replace('&','') + ".zip>HsDTM</a>", "<a href=" + datapath + "Campeche_Yucatan/LAS/" + feature.properties.Sheet.replace('&','') + ".zip>LAS</a>"]
                 campeche_array.push(arraycont);
             }
             var chihuahua_array = []
             function popUpChihuahua(feature, layer) {    
                 layer.bindPopup("<h2>" + feature.properties.Sheet + "</h2>DSM: <a href=" + datapath + "Chihuahua/DSM/DSM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target=_blank' href=" + datapath + "Chihuahua/Metadata/DSM.htm>metadata</a><br>DTM: <a href=" + datapath + "Chihuahua/DTM/DTM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Chihuahua/Metadata/DTM.htm>metadata</a><br>HsDSM: <a href=" + datapath + "Chihuahua/HsDSM/HsDSM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Chihuahua/Metadata/HsDSM.htm>metadata</a><br>HsDTM: <a href=" + datapath + "Chihuahua/HsDTM/HsDTM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Chihuahua/Metadata/HsDTM.htm>metadata</a><br>LAS File: <a href=" + datapath + "Chihuahua/LAS/" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Chihuahua/Metadata/LiDAR.htm>metadata</a>");
-                var arraycont = [feature.properties.Sheet, "<a href=" + datapath + "Chihuahua/DSM/DSM_" + feature.properties.Sheet.replace('&','') + ".zip>DSM</a>", "<a href=" + datapath + "Chihuahua/DTM/DTM_" + feature.properties.Sheet.replace('&','') + ".zip>DTM</a>", "<a href=" + datapath + "Chihuahua/HsDSM/HsDSM_" + feature.properties.Sheet.replace('&','') + ".zip>HsDSM</a>", "<a href=" + datapath + "Chihuahua/HsDTM/HsDTM_" + feature.properties.Sheet.replace('&','') + ".zip>HsDTM</a>", "<a href=" + datapath + "Chihuahua/LAS/" + feature.properties.Sheet.replace('&','') + ".zip>LAS</a>", "<a href=" + datapath + "Chihuahua/Ground_points/" + feature.properties.Sheet.replace('&','') + ".zip>Ground Points</a>"]
+                var arraycont = [feature.properties.Sheet, "<a href=" + datapath + "Chihuahua/DSM/DSM_" + feature.properties.Sheet.replace('&','') + ".zip>DSM</a>", "<a href=" + datapath + "Chihuahua/DTM/DTM_" + feature.properties.Sheet.replace('&','') + ".zip>DTM</a>", "<a href=" + datapath + "Chihuahua/HsDSM/HsDSM_" + feature.properties.Sheet.replace('&','') + ".zip>HsDSM</a>", "<a href=" + datapath + "Chihuahua/HsDTM/HsDTM_" + feature.properties.Sheet.replace('&','') + ".zip>HsDTM</a>", "<a href=" + datapath + "Chihuahua/LAS/" + feature.properties.Sheet.replace('&','') + ".zip>LAS</a>"]
                 chihuahua_array.push(arraycont);
             }
             var jalisco_array = []
             function popUpJalisco(feature, layer) {    
                 layer.bindPopup("<h2>" + feature.properties.Sheet + "</h2>DSM: <a href=" + datapath + "Jalisco/DSM/DSM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target=_blank' href=" + datapath + "Jalisco/Metadata/DSM.htm>metadata</a><br>DTM: <a href=" + datapath + "Jalisco/DTM/DTM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Jalisco/Metadata/DTM.htm>metadata</a><br>HsDSM: <a href=" + datapath + "Jalisco/HsDSM/HsDSM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Jalisco/Metadata/HsDSM.htm>metadata</a><br>HsDTM: <a href=" + datapath + "Jalisco/HsDTM/HsDTM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Jalisco/Metadata/HsDTM.htm>metadata</a><br>LAS File: <a href=" + datapath + "Jalisco/LAS/" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Jalisco/Metadata/LiDAR.htm>metadata</a>");
-                var arraycont = [feature.properties.Sheet, "<a href=" + datapath + "Jalisco/DSM/DSM_" + feature.properties.Sheet.replace('&','') + ".zip>DSM</a>", "<a href=" + datapath + "Jalisco/DTM/DTM_" + feature.properties.Sheet.replace('&','') + ".zip>DTM</a>", "<a href=" + datapath + "Jalisco/HsDSM/HsDSM_" + feature.properties.Sheet.replace('&','') + ".zip>HsDSM</a>", "<a href=" + datapath + "Jalisco/HsDTM/HsDTM_" + feature.properties.Sheet.replace('&','') + ".zip>HsDTM</a>", "<a href=" + datapath + "Jalisco/LAS/" + feature.properties.Sheet.replace('&','') + ".zip>LAS</a>", "<a href=" + datapath + "Jalisco/Ground_points/" + feature.properties.Sheet.replace('&','') + ".zip>Ground Points</a>"]
-                oaxaca_array.push(arraycont);
+                var arraycont = [feature.properties.Sheet, "<a href=" + datapath + "Jalisco/DSM/DSM_" + feature.properties.Sheet.replace('&','') + ".zip>DSM</a>", "<a href=" + datapath + "Jalisco/DTM/DTM_" + feature.properties.Sheet.replace('&','') + ".zip>DTM</a>", "<a href=" + datapath + "Jalisco/HsDSM/HsDSM_" + feature.properties.Sheet.replace('&','') + ".zip>HsDSM</a>", "<a href=" + datapath + "Jalisco/HsDTM/HsDTM_" + feature.properties.Sheet.replace('&','') + ".zip>HsDTM</a>", "<a href=" + datapath + "Jalisco/LAS/" + feature.properties.Sheet.replace('&','') + ".zip>LAS</a>"]
+                jalisco_array.push(arraycont);
             }
             var oaxaca_array = [];
             function popUpOaxaca1(feature, layer) {
-                var popupcont = "<h2>" + feature.properties.Sheet + "</h2>DSM: <a href=" + datapath + "Oaxaca1/DSM/DSM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target=_blank' href=" + datapath + "Oaxaca1/Metadata/DSM.htm>metadata</a><br>DTM: <a href=" + datapath + "Oaxaca1/DTM/DTM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Oaxaca1/Metadata/DTM.htm>metadata</a><br>HsDSM: <a href=" + datapath + "Oaxaca1/HsDSM/HsDSM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Oaxaca1/Metadata/HsDSM.htm>metadata</a><br>HsDTM: <a href=" + datapath + "Oaxaca1/HsDTM/HsDTM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Oaxaca1/Metadata/HsDTM.htm>metadata</a><br>LAS File: <a href=" + datapath + "Oaxaca1/LAS/" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Oaxaca1/Metadata/LiDAR.htm>metadata</a><br>Ground Points: <a href=" + datapath + "Oaxaca1/Ground_points/" + feature.properties.Sheet.replace('&','') + ".zip>download</a>"
+                var popupcont = "<h2>" + feature.properties.Sheet + "</h2>DSM: <a href=" + datapath + "Oaxaca1/DSM/DSM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target=_blank' href=" + datapath + "Oaxaca1/Metadata/DSM.htm>metadata</a><br>DTM: <a href=" + datapath + "Oaxaca1/DTM/DTM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Oaxaca1/Metadata/DTM.htm>metadata</a><br>HsDSM: <a href=" + datapath + "Oaxaca1/HsDSM/HsDSM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Oaxaca1/Metadata/HsDSM.htm>metadata</a><br>HsDTM: <a href=" + datapath + "Oaxaca1/HsDTM/HsDTM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Oaxaca1/Metadata/HsDTM.htm>metadata</a><br>LAS File: <a href=" + datapath + "Oaxaca1/LAS/" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Oaxaca1/Metadata/LiDAR.htm>metadata</a>"
                 layer.bindPopup(popupcont);
-                var arraycont = [feature.properties.Sheet, "<a href=" + datapath + "Oaxaca1/DSM/DSM_" + feature.properties.Sheet.replace('&','') + ".zip>DSM</a>", "<a href=" + datapath + "Oaxaca1/DTM/DTM_" + feature.properties.Sheet.replace('&','') + ".zip>DTM</a>", "<a href=" + datapath + "Oaxaca1/HsDSM/HsDSM_" + feature.properties.Sheet.replace('&','') + ".zip>HsDSM</a>", "<a href=" + datapath + "Oaxaca1/HsDTM/HsDTM_" + feature.properties.Sheet.replace('&','') + ".zip>HsDTM</a>", "<a href=" + datapath + "Oaxaca1/LAS/" + feature.properties.Sheet.replace('&','') + ".zip>LAS</a>", "<a href=" + datapath + "Oaxaca1/Ground_points/" + feature.properties.Sheet.replace('&','') + ".zip>Ground Points</a>"]
+                var arraycont = [feature.properties.Sheet, "<a href=" + datapath + "Oaxaca1/DSM/DSM_" + feature.properties.Sheet.replace('&','') + ".zip>DSM</a>", "<a href=" + datapath + "Oaxaca1/DTM/DTM_" + feature.properties.Sheet.replace('&','') + ".zip>DTM</a>", "<a href=" + datapath + "Oaxaca1/HsDSM/HsDSM_" + feature.properties.Sheet.replace('&','') + ".zip>HsDSM</a>", "<a href=" + datapath + "Oaxaca1/HsDTM/HsDTM_" + feature.properties.Sheet.replace('&','') + ".zip>HsDTM</a>", "<a href=" + datapath + "Oaxaca1/LAS/" + feature.properties.Sheet.replace('&','') + ".zip>LAS</a>"]
                 oaxaca_array.push(arraycont);
             }
             function popUpOaxaca2(feature, layer) {    
                 layer.bindPopup("<h2>" + feature.properties.Sheet + "</h2>DSM: <a href=" + datapath + "Oaxaca2/DSM/DSM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target=_blank' href=" + datapath + "Oaxaca2/Metadata/DSM.htm>metadata</a><br>DTM: <a href=" + datapath + "Oaxaca2/DTM/DTM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Oaxaca2/Metadata/DTM.htm>metadata</a><br>HsDSM: <a href=" + datapath + "Oaxaca2/HsDSM/HsDSM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Oaxaca2/Metadata/HsDSM.htm>metadata</a><br>HsDTM: <a href=" + datapath + "Oaxaca2/HsDTM/HsDTM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Oaxaca2/Metadata/HsDTM.htm>metadata</a><br>LAS File: <a href=" + datapath + "Oaxaca2/LAS/" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Oaxaca2/Metadata/LiDAR.htm>metadata</a>");
-                var arraycont = [feature.properties.Sheet, "<a href=" + datapath + "Oaxaca2/DSM/DSM_" + feature.properties.Sheet.replace('&','') + ".zip>DSM</a>", "<a href=" + datapath + "Oaxaca2/DTM/DTM_" + feature.properties.Sheet.replace('&','') + ".zip>DTM</a>", "<a href=" + datapath + "Oaxaca2/HsDSM/HsDSM_" + feature.properties.Sheet.replace('&','') + ".zip>HsDSM</a>", "<a href=" + datapath + "Oaxaca2/HsDTM/HsDTM_" + feature.properties.Sheet.replace('&','') + ".zip>HsDTM</a>", "<a href=" + datapath + "Oaxaca2/LAS/" + feature.properties.Sheet.replace('&','') + ".zip>LAS</a>", "<a href=" + datapath + "Oaxaca2/Ground_points/" + feature.properties.Sheet.replace('&','') + ".zip>Ground Points</a>"]
+                var arraycont = [feature.properties.Sheet, "<a href=" + datapath + "Oaxaca2/DSM/DSM_" + feature.properties.Sheet.replace('&','') + ".zip>DSM</a>", "<a href=" + datapath + "Oaxaca2/DTM/DTM_" + feature.properties.Sheet.replace('&','') + ".zip>DTM</a>", "<a href=" + datapath + "Oaxaca2/HsDSM/HsDSM_" + feature.properties.Sheet.replace('&','') + ".zip>HsDSM</a>", "<a href=" + datapath + "Oaxaca2/HsDTM/HsDTM_" + feature.properties.Sheet.replace('&','') + ".zip>HsDTM</a>", "<a href=" + datapath + "Oaxaca2/LAS/" + feature.properties.Sheet.replace('&','') + ".zip>LAS</a>"]
                 oaxaca_array.push(arraycont);
             }
             function popUpOaxaca3(feature, layer) {    
                 layer.bindPopup("<h2>" + feature.properties.Sheet + "</h2>DSM: <a href=" + datapath + "Oaxaca3/DSM/DSM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target=_blank' href=" + datapath + "Oaxaca3/Metadata/DSM.htm>metadata</a><br>DTM: <a href=" + datapath + "Oaxaca3/DTM/DTM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Oaxaca3/Metadata/DTM.htm>metadata</a><br>HsDSM: <a href=" + datapath + "Oaxaca3/HsDSM/HsDSM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Oaxaca3/Metadata/HsDSM.htm>metadata</a><br>HsDTM: <a href=" + datapath + "Oaxaca3/HsDTM/HsDTM_" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Oaxaca3/Metadata/HsDTM.htm>metadata</a><br>LAS File: <a href=" + datapath + "Oaxaca3/LAS/" + feature.properties.Sheet.replace('&','') + ".zip>download</a> <a target='_blank' href=" + datapath + "Oaxaca3/Metadata/LiDAR.htm>metadata</a>");
-                var arraycont = [feature.properties.Sheet, "<a href=" + datapath + "Oaxaca3/DSM/DSM_" + feature.properties.Sheet.replace('&','') + ".zip>DSM</a>", "<a href=" + datapath + "Oaxaca3/DTM/DTM_" + feature.properties.Sheet.replace('&','') + ".zip>DTM</a>", "<a href=" + datapath + "Oaxaca3/HsDSM/HsDSM_" + feature.properties.Sheet.replace('&','') + ".zip>HsDSM</a>", "<a href=" + datapath + "Oaxaca3/HsDTM/HsDTM_" + feature.properties.Sheet.replace('&','') + ".zip>HsDTM</a>", "<a href=" + datapath + "Oaxaca3/LAS/" + feature.properties.Sheet.replace('&','') + ".zip>LAS</a>", "<a href=" + datapath + "Oaxaca3/Ground_points/" + feature.properties.Sheet.replace('&','') + ".zip>Ground Points</a>"]
+                var arraycont = [feature.properties.Sheet, "<a href=" + datapath + "Oaxaca3/DSM/DSM_" + feature.properties.Sheet.replace('&','') + ".zip>DSM</a>", "<a href=" + datapath + "Oaxaca3/DTM/DTM_" + feature.properties.Sheet.replace('&','') + ".zip>DTM</a>", "<a href=" + datapath + "Oaxaca3/HsDSM/HsDSM_" + feature.properties.Sheet.replace('&','') + ".zip>HsDSM</a>", "<a href=" + datapath + "Oaxaca3/HsDTM/HsDTM_" + feature.properties.Sheet.replace('&','') + ".zip>HsDTM</a>", "<a href=" + datapath + "Oaxaca3/LAS/" + feature.properties.Sheet.replace('&','') + ".zip>LAS</a>"]
                 oaxaca_array.push(arraycont);
             }
 
@@ -74,7 +91,7 @@
                 attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             });
 
-            var biotiles = L.tileLayer('https://googledrive.com/host/0B40nFLHiyF8mekZhSjBkb2dkZE0/{z}/{x}/{y}.png', {
+            var biotiles = L.tileLayer('https://googledrive.com/host/0B0kU4muLAA1BbHM3UU9KRVE2N28/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="http://www.whrc.org">WHRC</a>',
                 tms: true
             });
@@ -195,10 +212,18 @@
                 color: '#f00'
             });
 
+            var lowerleft = L.latLng(14.5329170227051, -118.36888885498)
+            var upperright = L.latLng(34, -80.0)
+            bounds = L.latLngBounds(lowerleft, upperright)
+
+
             var map = L.map("map", {
                 // zoomControl: false,
                 center: [23.9505338215299, -102.547071590564],
                 zoom: 5,
+                minZoom: 5,
+                maxBounds: bounds,
+                defaultExtentControl: true,
                 layers: [osm]
             });
 
@@ -208,8 +233,7 @@
             // zoomHome.addTo(map);
 
             var baseMaps = {
-                "OSM": osm,
-                "Biomass": biotiles
+                "Basemap": osm
             }
 
             var yucatan_campeche_group = L.featureGroup([yucatan_q1_tiles, campeche_q2_tiles, campeche_q3_tiles, campeche_t1_tiles, campeche_t2_tiles, campeche_t3_tiles, campeche_yucatan_q4_tiles])
@@ -228,7 +252,8 @@
                 "Chiapas": chiapas_group,
                 "Chihuahua": chihuahua_group,
                 "Jalisco": jalisco_group,
-                "Oaxaca": oaxaca_group
+                "Oaxaca": oaxaca_group,
+                "Biomass": biotiles
             }
             L.control.layers(baseMaps, overlayLayers, {
                 collapsed: false,
@@ -252,7 +277,7 @@
                     }
                     var newtable = "<h2>" + eventLayer.name + "</h2><table>"
                     for (i=0; i<=myarray.length - 1; i++) {
-                        newtable = newtable + "<tr><td><b>" + myarray[i][0] + "</b></td><td>" + myarray[i][1] + "</td><td>" + myarray[i][2] + "</td><td>" + myarray[i][3] + "</td><td>" + myarray[i][4] + "</td><td>" + myarray[i][5] + "</td><td>" + myarray[i][6] + "</td></tr>"
+                        newtable = newtable + "<tr><td><b>" + myarray[i][0] + "</b></td><td>" + myarray[i][1] + "</td><td>" + myarray[i][2] + "</td><td>" + myarray[i][3] + "</td><td>" + myarray[i][4] + "</td><td>" + myarray[i][5] + "</td></tr>"
                     }
                     newtable = newtable + "</table>"
                     return newtable
