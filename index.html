@@ -13,24 +13,31 @@
                 font-family: 'GandhiSans-Regular';
                 src: url('http://www.fontsaddict.com/fontface/gandhisans-regular.otf');
             }
-            header,h1 {
+            header {
                 padding: 0px;
-                margin: 0px;
                 border: 0;
+            }
+            h1 {
+                margin: auto;
             }
             html,body { height: 100%;
                 font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
                 color: #5B7439;
             }
-            #map { height: 60%; 
+            #map { 
+                height: 60%; 
                 overflow: hidden;
                 left: 0%;
                 top: 0%;
                 padding: 0px;
                 margin: 0px;
             }
-            #data { height: 40%;
+            #data { 
+                height: 40%;
                 overflow: auto;
+            }
+            #logo {
+                margin: 0px 20px;
             }
         </style>
     </head>
@@ -40,6 +47,11 @@
         </header>
         <div id="map"></div>
         <br>
+                    <img id="logo" src="https://googledrive.com/host/0B0kU4muLAA1Bdy1LbDJFallVQ1k/USAID_logo.png" alt="USAID" height=15% width=15%>
+                    <img id="logo" src="https://googledrive.com/host/0B0kU4muLAA1Bdy1LbDJFallVQ1k/logo-nature-notagline.png" alt="TNC" height=15% width=15%>
+                    <img id="logo" src="https://googledrive.com/host/0B0kU4muLAA1Bdy1LbDJFallVQ1k/RFA.jpg" alt="RFA" height=15% width=15%>
+                    <img id="logo" src="https://googledrive.com/host/0B0kU4muLAA1Bdy1LbDJFallVQ1k/WHRC-logo_325.png" alt="WHRC" height=15% width=15%>
+                    <img id="logo" src="https://googledrive.com/host/0B0kU4muLAA1Bdy1LbDJFallVQ1k/endesu.jpg" alt="ENDESU" height=15% width=15%>
         <div id="data">
             <span></span>
         </div>
@@ -253,7 +265,7 @@
                 "Chihuahua LiDAR": chihuahua_group,
                 "Jalisco LiDAR": jalisco_group,
                 "Oaxaca LiDAR": oaxaca_group,
-                "Biomass Map": biotiles
+                "WHRC Biomass (30m)": biotiles
             }
             L.control.layers(baseMaps, overlayLayers, {
                 collapsed: false,
@@ -275,7 +287,7 @@
                     } else if (eventLayer.name == "Jalisco LiDAR") {
                         myarray = jalisco_array.sort()
                     }
-                    if (eventLayer.name != "Biomass Map") {
+                    if (eventLayer.name != "WHRC Biomass (30m)") {
                         var newtable = "<h2>" + eventLayer.name + "</h2><table>"
                         for (i=0; i<=myarray.length - 1; i++) {
                             newtable = newtable + "<tr><td><b>" + myarray[i][0] + "</b></td><td>" + myarray[i][1] + "</td><td>" + myarray[i][2] + "</td><td>" + myarray[i][3] + "</td><td>" + myarray[i][4] + "</td><td>" + myarray[i][5] + "</td></tr>"
@@ -289,7 +301,7 @@
 
             map.on('overlayremove', function (e) {
                 $("#data span").html(function() {
-                    if (eventLayer.name != "Biomass Map") {
+                    if (eventLayer.name != "WHRC Biomass (30m)") {
                         return ""
                     }
                 });
